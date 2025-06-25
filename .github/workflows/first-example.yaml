@@ -10,7 +10,7 @@ jobs:
           uses: actions/checkout@v4
 
         - name: Welcome message
-          run: touch "Hello first" >> hello.txt
+          run: echo "Hello, World!" > filename.txt
 
         - name: list files
           run: ls
