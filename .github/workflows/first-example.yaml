@@ -12,19 +12,21 @@ jobs:
         - name: Welcome message
           run: echo "Hello, World!" > filename.txt
 
-        - name: list files
-          run: ls
-          
-        - name: read file
-          run: cat README.md
+        - name: Upload file
+          uses: actions/upload-artifact@v4
+          with:
+            name: myfile
+            path: filename.txt
     second_job:
         needs: first_job
         runs-on: ubuntu-latest
         steps:
-        - name: print messages for second job
-          run: echo "Hello Second Job Messages"
-        - name: sleep for 30 second
-          run : sleep 30
+        - name: download artifact
+          uses: actions/download-artifact@v4
+          with:
+            name: myfile
+        - name: read file
+          run : cat filename.txt
     third_job:
         needs: [first_job,second_job]
         runs-on: ubuntu-latest
