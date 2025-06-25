@@ -18,11 +18,13 @@ jobs:
         - name: read file
           run: cat README.md
     second_job:
+        needs: first_job
         runs-on: ubuntu-latest
         steps:
         - name: print messages for second job
           run: echo "Hello Second Job Messages"
     third_job:
+        needs: [first_job,second_job]
         runs-on: ubuntu-latest
         steps:
         - name: print messages for third job
