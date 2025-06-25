@@ -23,6 +23,8 @@ jobs:
         steps:
         - name: print messages for second job
           run: echo "Hello Second Job Messages"
+        - name: sleep for 30 second
+          run : sleep 30
     third_job:
         needs: [first_job,second_job]
         runs-on: ubuntu-latest
